@@ -1,0 +1,36 @@
+body, html {
+    margin:0; padding:0;
+    width:100%; height:100%;
+
+}
+
+* {
+    box-sizing: border-box;
+    position: absolute;
+}
+
+spaceship{
+    background-color:red;
+    background-image: url(../images/pokeball.png);
+    width:50px; height: 50px;
+    display:block;
+}
+
+asteroid{
+    background-color:red;
+    background-image: url(../images/pokeball.png);
+    width:50px; height: 50px;
+    display:block;
+}
+gun {
+    background-color:yellow;
+    /* background-image: url(../images/pokeball.png); */
+    width:30px; height: 30px;
+    display:block;
+}
+
+bullet{
+    background-color:purple;
+    width:10px; height:10px;
+    display:block;
+}
