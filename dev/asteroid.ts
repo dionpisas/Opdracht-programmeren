@@ -3,8 +3,7 @@
 class Asteroid extends GameObject {
 
     private speedY : number
-    protected x: number
-    protected y : number
+ 
     
 
     constructor(type:string){
@@ -33,4 +32,6 @@ class Asteroid extends GameObject {
     public getRectangle() {
         return this.div.getBoundingClientRect()
     }
+
+    
 }

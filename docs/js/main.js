@@ -19,6 +19,7 @@ var GameObject = (function () {
         this.draw();
     };
     GameObject.prototype.remove = function () {
+        this.div.remove();
     };
     GameObject.prototype.draw = function () {
         this.div.style.transform = "translate(" + this.x + "px, " + this.y + "px)";
@@ -52,10 +53,9 @@ var Asteroid = (function (_super) {
 }(GameObject));
 var Bullet = (function (_super) {
     __extends(Bullet, _super);
-    function Bullet(x, y, game) {
+    function Bullet(x, y) {
         var _this = _super.call(this, "bullet") || this;
         _this.speedY = 10;
-        _this.game = game;
         _this.x = x;
         _this.y = y;
         _this.draw();
@@ -73,12 +73,11 @@ var Bullet = (function (_super) {
 var Game = (function () {
     function Game() {
         this.numberOfAsteroids = 10;
-        this.gameObjects = new Array();
-        this.gameObjects.push(new SpaceShip("spaceship", this));
+        Game.gameObjects = new Array();
+        Game.gameObjects.push(new SpaceShip("spaceship"));
         for (var i = 0; i < this.numberOfAsteroids; i++) {
-            this.gameObjects.push(new Asteroid("asteroid"));
+            Game.gameObjects.push(new Asteroid("asteroid"));
         }
-        this.gameObjects.push();
         this.gameloop();
     }
     Game.prototype.checkCollision = function (a, b) {
@@ -89,22 +88,39 @@ var Game = (function () {
     };
     Game.prototype.gameloop = function () {
         var _this = this;
-        for (var _i = 0, _a = this.gameObjects; _i < _a.length; _i++) {
+        for (var _i = 0, _a = Game.gameObjects; _i < _a.length; _i++) {
             var gameObject = _a[_i];
             gameObject.move();
-            console.log(gameObject);
+            if (gameObject instanceof Bullet) {
+                for (var _b = 0, _c = Game.gameObjects; _b < _c.length; _b++) {
+                    var asteroid = _c[_b];
+                    if (asteroid instanceof Asteroid) {
+                        if (this.checkCollision(gameObject.getRectangle(), asteroid.getRectangle())) {
+                            console.log("BOTSING");
+                            asteroid.remove();
+                            var index = Game.gameObjects.indexOf(asteroid);
+                            Game.gameObjects.splice(index, 1);
+                            gameObject.remove();
+                            index = Game.gameObjects.indexOf(gameObject);
+                            Game.gameObjects.splice(index, 1);
+                            break;
+                        }
+                    }
+                }
+            }
         }
         requestAnimationFrame(function () { return _this.gameloop(); });
+    };
+    Game.addGameObject = function (gameObject) {
+        Game.gameObjects.push(gameObject);
     };
     return Game;
 }());
 window.addEventListener("load", function () { return new Game(); });
 var Gun = (function (_super) {
     __extends(Gun, _super);
-    function Gun(parentElement, game) {
+    function Gun(parentElement) {
         var _this = _super.call(this, "gun", parentElement) || this;
-        _this.bullets = new Array();
-        _this.game = game;
         _this.x = 10;
         _this.y = -30;
         _this.draw();
@@ -122,32 +138,20 @@ var Gun = (function (_super) {
     Gun.prototype.shoot = function () {
         var y = this.div.getBoundingClientRect().top;
         var x = this.div.getBoundingClientRect().left + 10;
-        this.bullets.push(new Bullet(x, y, this.game));
+        Game.addGameObject(new Bullet(x, y));
     };
     Gun.prototype.move = function () {
-        for (var _i = 0, _a = this.bullets; _i < _a.length; _i++) {
-            var bullet = _a[_i];
-            bullet.move();
-        }
     };
-    Object.defineProperty(Gun.prototype, "getBullets", {
-        get: function () {
-            return this.bullets;
-        },
-        enumerable: true,
-        configurable: true
-    });
     return Gun;
 }(GameObject));
 var SpaceShip = (function (_super) {
     __extends(SpaceShip, _super);
-    function SpaceShip(type, game) {
+    function SpaceShip(type) {
         var _this = _super.call(this, "spaceship") || this;
-        _this.game = game;
         _this.speedX = 8;
         _this.y = window.innerHeight - 50;
         _this.x = window.innerWidth / 2;
-        _this.gun = new Gun(_this.div, _this.game);
+        _this.gun = new Gun(_this.div);
         return _this;
     }
     SpaceShip.prototype.move = function () {

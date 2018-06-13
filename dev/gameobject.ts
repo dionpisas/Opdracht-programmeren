@@ -14,8 +14,8 @@ class GameObject{
         this.draw()
     }
 
-    protected remove(){
-
+    public remove() {
+        this.div.remove()
     }
     
     protected draw(){

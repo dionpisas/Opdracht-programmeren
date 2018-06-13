@@ -4,22 +4,18 @@ class SpaceShip extends GameObject{
     private speedX : number
     // private speedY : number
 
-    protected x : number
-    protected y : number
 
     private gun : Gun
-    private game: Game
     
 
-    constructor(type:string, game: Game){
+    constructor(type:string){
         super("spaceship")
-        this.game = game
         this.speedX = 8
         // this.speedY = 8
         this.y = window.innerHeight- 50
         this.x = window.innerWidth /2
 
-        this.gun = new Gun(this.div,this.game)
+        this.gun = new Gun(this.div)
        
 
     }

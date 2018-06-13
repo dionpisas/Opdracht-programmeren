@@ -1,14 +1,12 @@
 class Bullet extends GameObject{
 
     private speedY: number
-    public y : number
     private game: Game
 
 
-    constructor(x: number, y:number, game:Game){
+    constructor(x: number, y:number){
         super("bullet")
         this.speedY = 10
-        this.game = game
 
         //above gun
         this.x = x
