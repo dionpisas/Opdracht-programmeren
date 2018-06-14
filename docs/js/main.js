@@ -117,6 +117,11 @@ var Game = (function () {
     return Game;
 }());
 window.addEventListener("load", function () { return new Game(); });
+var Gamescreen = (function () {
+    function Gamescreen(text) {
+    }
+    return Gamescreen;
+}());
 var Gun = (function (_super) {
     __extends(Gun, _super);
     function Gun(parentElement) {

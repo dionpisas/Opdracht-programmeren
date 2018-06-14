@@ -166,4 +166,8 @@ Peer review
 ---------------
 https://github.com/AdriaanGiel/sketch_runner
 
-Heeft aan bijna alle beoordelingen voldaan alleen heeft ie een bug niet kunnen oplossen.
+Heeft aan bijna alle beoordelingen voldaan alleen heeft ie een bug niet kunnen oplossen en spel is nog niet helemaal klaar.
+
+
+
+Mijn spel is nog niet volledig klaar mist een extra uitdaging en begin en startscherm : 14-6-2018
