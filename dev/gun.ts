@@ -30,15 +30,10 @@ class Gun extends GameObject{
     }   
 
     public move() {
-        // for (const bullet of this.bullets) {
-        //     bullet.move()
-        // }
+      
     }
 
-    // public get  getBullets(){
-
-    //     return this.bullets
-    // }
+   
 
 
     

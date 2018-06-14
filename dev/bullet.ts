@@ -1,7 +1,7 @@
 class Bullet extends GameObject{
 
     private speedY: number
-    private game: Game
+   
 
 
     constructor(x: number, y:number){
