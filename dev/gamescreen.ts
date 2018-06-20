@@ -3,9 +3,17 @@ class gameScreen extends Screens{
 constructor(g:Game){
     super(g, "")
 
+    
+
     Game.gameObjects = new Array()
 
     Game.gameObjects.push(new SpaceShip("spaceship"))
+
+    var sound = new Howl({
+        src: ['../docs/images/sound.mp3']
+      });
+      
+      sound.play();
     
     for (let i = 0; i < this.game.numberOfAsteroids; i++) {
         Game.gameObjects.push(new Asteroid("asteroid"))
@@ -44,6 +52,3 @@ constructor(g:Game){
            }
         }
     }
-
-
-}

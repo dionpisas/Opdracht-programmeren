@@ -166,8 +166,9 @@ Peer review
 ---------------
 https://github.com/AdriaanGiel/sketch_runner
 
-Heeft aan bijna alle beoordelingen voldaan alleen heeft ie een bug niet kunnen oplossen en spel is nog niet helemaal klaar.
+Heeft aan bijna alle beoordelingen voldaan alleen heeft ie een bug niet kunnen oplossen en daarom is het  spel  nog niet helemaal klaar.
+Hij heeft correct gebruikt gemaakt van oververving, compositie en een extra uidaging.
 
 
 
-Mijn spel is nog niet volledig klaar mist een extra uitdaging en begin en startscherm : 14-6-2018
+Mijn spel is nog niet volledig klaar mist een eindscherm: 14-6-2018

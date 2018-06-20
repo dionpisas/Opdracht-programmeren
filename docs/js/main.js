@@ -139,6 +139,10 @@ var gameScreen = (function (_super) {
         var _this = _super.call(this, g, "") || this;
         Game.gameObjects = new Array();
         Game.gameObjects.push(new SpaceShip("spaceship"));
+        var sound = new Howl({
+            src: ['../docs/images/sound.mp3']
+        });
+        sound.play();
         for (var i = 0; i < _this.game.numberOfAsteroids; i++) {
             Game.gameObjects.push(new Asteroid("asteroid"));
         }
