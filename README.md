@@ -171,4 +171,4 @@ Hij heeft correct gebruikt gemaakt van oververving, compositie en een extra uida
 
 
 
-Mijn spel is nog niet volledig klaar mist een eindscherm: 14-6-2018
+Mijn spel is nog niet volledig klaar mist een eindscherm: 21-6-2018
