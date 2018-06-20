@@ -72,22 +72,79 @@ var Bullet = (function (_super) {
 }(GameObject));
 var Game = (function () {
     function Game() {
-        this.numberOfAsteroids = 10;
-        Game.gameObjects = new Array();
-        Game.gameObjects.push(new SpaceShip("spaceship"));
-        for (var i = 0; i < this.numberOfAsteroids; i++) {
-            Game.gameObjects.push(new Asteroid("asteroid"));
-        }
+        this._numberOfAsteroids = 10;
+        this.screens = {
+            gameover: GameOver,
+            start: startScreen,
+            game: gameScreen
+        };
+        this.activeScreen = new this.screens.start(this);
         this.gameloop();
     }
-    Game.prototype.checkCollision = function (a, b) {
+    Game.prototype.changeScreens = function (name) {
+        this.activeScreen.cleanScreen();
+        this.activeScreen = new this.screens[name](this);
+    };
+    Object.defineProperty(Game.prototype, "numberOfAsteroids", {
+        get: function () {
+            return this._numberOfAsteroids;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Game.prototype.gameloop = function () {
+        var _this = this;
+        this.activeScreen.update();
+        requestAnimationFrame(function () { return _this.gameloop(); });
+    };
+    Game.addGameObject = function (gameObject) {
+        Game.gameObjects.push(gameObject);
+    };
+    return Game;
+}());
+window.addEventListener("load", function () { return new Game(); });
+var Screens = (function () {
+    function Screens(g, textfield) {
+        this.game = g;
+        this.textfield = document.createElement("textfield");
+        this.textfield.innerHTML = textfield;
+        document.body.appendChild(this.textfield);
+    }
+    Screens.prototype.update = function () {
+    };
+    Screens.prototype.cleanScreen = function () {
+        document.body.innerHTML = "";
+    };
+    Screens.prototype.switchScreens = function (name) {
+        this.game.changeScreens(name);
+    };
+    Screens.prototype.checkCollision = function (a, b) {
         return (a.left <= b.right &&
             b.left <= a.right &&
             a.top <= b.bottom &&
             b.top <= a.bottom);
     };
-    Game.prototype.gameloop = function () {
-        var _this = this;
+    return Screens;
+}());
+var GameOver = (function (_super) {
+    __extends(GameOver, _super);
+    function GameOver(g, type) {
+        return _super.call(this, g, 'Game over boy!') || this;
+    }
+    return GameOver;
+}(Screens));
+var gameScreen = (function (_super) {
+    __extends(gameScreen, _super);
+    function gameScreen(g) {
+        var _this = _super.call(this, g, "") || this;
+        Game.gameObjects = new Array();
+        Game.gameObjects.push(new SpaceShip("spaceship"));
+        for (var i = 0; i < _this.game.numberOfAsteroids; i++) {
+            Game.gameObjects.push(new Asteroid("asteroid"));
+        }
+        return _this;
+    }
+    gameScreen.prototype.update = function () {
         for (var _i = 0, _a = Game.gameObjects; _i < _a.length; _i++) {
             var gameObject = _a[_i];
             gameObject.move();
@@ -109,19 +166,9 @@ var Game = (function () {
                 }
             }
         }
-        requestAnimationFrame(function () { return _this.gameloop(); });
     };
-    Game.addGameObject = function (gameObject) {
-        Game.gameObjects.push(gameObject);
-    };
-    return Game;
-}());
-window.addEventListener("load", function () { return new Game(); });
-var Gamescreen = (function () {
-    function Gamescreen(text) {
-    }
-    return Gamescreen;
-}());
+    return gameScreen;
+}(Screens));
 var Gun = (function (_super) {
     __extends(Gun, _super);
     function Gun(parentElement) {
@@ -175,4 +222,22 @@ var SpaceShip = (function (_super) {
     };
     return SpaceShip;
 }(GameObject));
+var startScreen = (function (_super) {
+    __extends(startScreen, _super);
+    function startScreen(g) {
+        var _this = _super.call(this, g, "Start het spel") || this;
+        _this.textfield.addEventListener("click", function () { return _this.switchScreens('game'); });
+        window.addEventListener("keydown", function (e) { return _this.onKeyDown(e); });
+        return _this;
+    }
+    startScreen.prototype.onKeyDown = function (event) {
+        switch (event.key) {
+            case "Space":
+                console.log("pew pew");
+                this.switchScreens('game');
+                break;
+        }
+    };
+    return startScreen;
+}(Screens));
 //# sourceMappingURL=main.js.map

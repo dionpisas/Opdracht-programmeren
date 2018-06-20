@@ -1,59 +1,40 @@
 class Game {
-    private numberOfAsteroids : number = 10
+    private _numberOfAsteroids : number = 10
 
-    private static gameObjects : Array<GameObject>
+    public static gameObjects : Array<GameObject>
+
+    private activeScreen : Screens
+
+    private screens:any = {
+        gameover : GameOver,
+        start : startScreen,
+        game : gameScreen
+    }
+    // private  gamescreen : StartScreen | Game | GameOver
 
 
     constructor(){
-        Game.gameObjects = new Array()
 
-        Game.gameObjects.push(new SpaceShip("spaceship"))
-        
-        for (let i = 0; i < this.numberOfAsteroids; i++) {
-            Game.gameObjects.push(new Asteroid("asteroid"))
-        }
+        this.activeScreen = new this.screens.start(this)
+
 
         this.gameloop()
     }
 
     
-    
-    public checkCollision(a: ClientRect, b: ClientRect): boolean {
-        return (a.left <= b.right &&
-            b.left <= a.right &&
-            a.top <= b.bottom &&
-            b.top <= a.bottom)
+    public changeScreens(name:string){
+        this.activeScreen.cleanScreen()
+        this.activeScreen = new this.screens[name](this)
     }
 
+    public  get numberOfAsteroids(){
+         return this._numberOfAsteroids
+    }
 
+  
     private gameloop(){
 
-       
-        
-
-        for (const gameObject of Game.gameObjects) {
-            gameObject.move()
-            // console.log(gameObject)
-            if(gameObject instanceof Bullet) {
-                for (const asteroid of Game.gameObjects) {
-                    if(asteroid instanceof Asteroid) {
-                        if (this.checkCollision(gameObject.getRectangle(), asteroid.getRectangle())) {
-                            console.log("BOTSING");
-                            // remove asteroid
-                            asteroid.remove()
-                            let index = Game.gameObjects.indexOf(asteroid)
-                            Game.gameObjects.splice(index, 1)
-                            // remove bullet 
-                            gameObject.remove()
-                            index = Game.gameObjects.indexOf(gameObject)
-                            Game.gameObjects.splice(index, 1)
-                            break
-                        }
-                    }
-                }
-            }
-        }
-
+        this.activeScreen.update()
         requestAnimationFrame(() => this.gameloop())
     }
 
