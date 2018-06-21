@@ -3,6 +3,8 @@ Periode 4 opdracht sleutel voor tentamen
 
 Bij de deze game heb ik gebruikt gemaakt van de principes van OOP
 
+Game link
+ https://dionpisas.github.io/Opdracht-programmeren/
 
 All mijn onderdelen heb ik opgesplits in classes.
 Om het te versimpelen heb ik gebruik gemaakt van inheritance
