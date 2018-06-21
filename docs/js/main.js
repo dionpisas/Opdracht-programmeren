@@ -141,7 +141,7 @@ var gameScreen = (function (_super) {
         Game.gameObjects = new Array();
         Game.gameObjects.push(new SpaceShip("spaceship"));
         var sound = new Howl({
-            src: ['../docs/images/sound.mp3']
+            src: ['../docs/librarie/sound.mp3']
         });
         sound.play();
         for (var i = 0; i < _this.game.numberOfAsteroids; i++) {
