@@ -13,7 +13,7 @@ constructor(g:Game){
 
     Game.gameObjects.push(new SpaceShip("spaceship"))
 
-    var sound = new Howl({
+    let sound = new Howl({
         src: ['../docs/images/sound.mp3']
       });
       
