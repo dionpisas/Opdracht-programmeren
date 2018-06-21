@@ -1,5 +1,9 @@
 class gameScreen extends Screens{
 
+
+//   private   list: Asteroid[] = []
+    private numberOfAsteroids : number = 0
+
 constructor(g:Game){
     super(g, "")
 
@@ -14,15 +18,21 @@ constructor(g:Game){
       });
       
       sound.play();
+      
+      
     
     for (let i = 0; i < this.game.numberOfAsteroids; i++) {
-        Game.gameObjects.push(new Asteroid("asteroid"))
+         let test = new Asteroid("asteroid")
+         Game.gameObjects.push(test)
+         this.numberOfAsteroids++
+        // this.list.push(test)
+        
     }
 
 }
 
     public update(){
-
+        
         for (const gameObject of Game.gameObjects) {
 
             gameObject.move()
@@ -40,15 +50,17 @@ constructor(g:Game){
                             gameObject.remove()
                             index = Game.gameObjects.indexOf(gameObject)
                             Game.gameObjects.splice(index, 1)
+                            // console.log(this.list.length);
+                            this.numberOfAsteroids--
+                            if(this.numberOfAsteroids  == 0){
+                                this.switchScreens('gameover')
+                            }
+
                             break
                         }
                     }
                 }
             }
-        //    for(const test of Game.gameObjects ){
-        //     if(test instanceof Asteroid){
-
-        //     }
            }
         }
     }

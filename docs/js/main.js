@@ -137,6 +137,7 @@ var gameScreen = (function (_super) {
     __extends(gameScreen, _super);
     function gameScreen(g) {
         var _this = _super.call(this, g, "") || this;
+        _this.numberOfAsteroids = 0;
         Game.gameObjects = new Array();
         Game.gameObjects.push(new SpaceShip("spaceship"));
         var sound = new Howl({
@@ -144,7 +145,9 @@ var gameScreen = (function (_super) {
         });
         sound.play();
         for (var i = 0; i < _this.game.numberOfAsteroids; i++) {
-            Game.gameObjects.push(new Asteroid("asteroid"));
+            var test = new Asteroid("asteroid");
+            Game.gameObjects.push(test);
+            _this.numberOfAsteroids++;
         }
         return _this;
     }
@@ -164,6 +167,10 @@ var gameScreen = (function (_super) {
                             gameObject.remove();
                             index = Game.gameObjects.indexOf(gameObject);
                             Game.gameObjects.splice(index, 1);
+                            this.numberOfAsteroids--;
+                            if (this.numberOfAsteroids == 0) {
+                                this.switchScreens('gameover');
+                            }
                             break;
                         }
                     }
