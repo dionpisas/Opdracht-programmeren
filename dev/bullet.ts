@@ -1,8 +1,6 @@
 class Bullet extends GameObject{
 
     private speedY: number
-   
-
 
     constructor(x: number, y:number){
         super("bullet")

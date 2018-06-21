@@ -10,8 +10,6 @@ class Game {
         start : startScreen,
         game : gameScreen
     }
-    // private  gamescreen : StartScreen | Game | GameOver
-
 
     constructor(){
 

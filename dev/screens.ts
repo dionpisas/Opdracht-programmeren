@@ -10,8 +10,6 @@ class Screens {
         this.textfield.innerHTML = textfield
         document.body.appendChild(this.textfield)
 
-        
-        // this.textfield.addEventListener("click", ()=> this.switchScreens())
     }
 
     public update() {

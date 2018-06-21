@@ -2,16 +2,12 @@
 class SpaceShip extends GameObject{
 
     private speedX : number
-    // private speedY : number
-
-
     private gun : Gun
     
 
     constructor(type:string){
         super("spaceship")
         this.speedX = 8
-        // this.speedY = 8
         this.y = window.innerHeight- 50
         this.x = window.innerWidth /2
 

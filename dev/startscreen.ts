@@ -1,7 +1,5 @@
 class startScreen extends Screens {
 
-
-
     constructor(g:Game){
         super(g, "Start het spel")
         

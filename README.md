@@ -168,7 +168,3 @@ https://github.com/AdriaanGiel/sketch_runner
 
 Heeft aan bijna alle beoordelingen voldaan alleen heeft ie een bug niet kunnen oplossen en daarom is het  spel  nog niet helemaal klaar.
 Hij heeft correct gebruikt gemaakt van oververving, compositie en een extra uidaging.
-
-
-
-Spel is klaar

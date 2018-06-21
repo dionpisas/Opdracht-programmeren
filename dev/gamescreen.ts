@@ -1,7 +1,5 @@
 class gameScreen extends Screens{
 
-
-//   private   list: Asteroid[] = []
     private numberOfAsteroids : number = 0
 
 constructor(g:Game){
