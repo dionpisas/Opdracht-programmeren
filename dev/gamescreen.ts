@@ -1,7 +1,7 @@
 class gameScreen extends Screens{
 
     private numberOfAsteroids : number = 0
-     Howl : any
+     
 
 
 constructor(g:Game){
@@ -13,7 +13,7 @@ constructor(g:Game){
 
     Game.gameObjects.push(new SpaceShip("spaceship"))
 
-    var sound = new this.Howl({
+    var sound = new Howl({
         src: ['../docs/images/sound.mp3']
       });
       
