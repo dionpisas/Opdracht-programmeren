@@ -200,7 +200,7 @@ class PlayScene extends Scene {
     }
 
 Hierboven is de class playscene, waar hij gebruikt maakt van encapsulation door prive variables aan te maken met een type class.
-Tevens maakt hij ook gebruik overerving de class playscene erft over van scene. Een goeie voorbeeld van composition is het meegeven van de game object aan de constructor van de class playscene.
+Tevens maakt hij ook gebruik overerving de class playscene erft over van scene. Een goeie voorbeeld van composition is maken van cloud objecten in de for loop.
 
 
 Adriaan heeft aan alle beoordelingen voldaan.
